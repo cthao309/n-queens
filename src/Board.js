@@ -79,7 +79,19 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      // grab the row by rowIndex
+      let row = this.get(rowIndex);
+
+      // console.log('row by rowIndex => ', row);
+      /*
+        [0, 1, 0, 0]
+        [0, 0, 0, 1]
+        [1, 0, 0, 0]
+        [0, 0, 1, 0]
+      */
+
+      // check to see if there is a value of 1 in the array, return a boolean
+      return row.includes(1); // fixme
     },
 
     // test if any rows on this board contain conflicts
