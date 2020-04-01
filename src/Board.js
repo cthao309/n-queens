@@ -90,12 +90,35 @@
         [0, 0, 1, 0]
       */
 
+      // counter declaration
+      let counter = 0;
+
+      // loop through to see if there is more than one indeces is true
+      for(let i = 0; i < row.length; i++) {
+        if(row[i]) {
+          counter++;
+        }
+      }
+
       // check to see if there is a value of 1 in the array, return a boolean
-      return row.includes(1); // fixme
+      return counter > 1; // fixme
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+      // grab the chess board size
+      let chessBoardSize = this.get('n');
+
+      // console.log('board size => ', chessBoardSize)
+
+      // loop through the length of the board
+      for(let i = 0; i < chessBoardSize; i++) {
+        // check each row if there is a conflict
+        if(this.hasRowConflictAt(i)) {
+          return this.hasRowConflictAt(i)
+        }
+      }
+
       return false; // fixme
     },
 
@@ -106,11 +129,41 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      // grab the size of the table
+      let chessBoardSize = this.get('n');
+
+      // declaration of counter
+      let counter = 0;
+
+      // loop through the size
+      for(let i = 0; i < chessBoardSize; i++) {
+        // retreive the row
+        let row = this.get(i);
+
+        // check if there is a value in that column through the colIndex
+        if(row[colIndex]) {
+          counter++;
+        }
+        // console.log(row, row[colIndex], counter);
+      }
+
+      // return true if there are more than one value in the same column => column conflict
+      return counter > 1; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      // grab the chess board size
+      let chessBoardSize = this.get('n');
+
+      // loop through each row
+      for(let i = 0; i < chessBoardSize; i++) {
+        // check if there is a conflict in the column
+        if(this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
+
       return false; // fixme
     },
 
