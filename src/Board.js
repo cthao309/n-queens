@@ -173,13 +173,97 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
+
+    /*
+    [1, 0, 0, 0]
+    [0, 1, 0, 0]
+    [0, 0, 1, 0]
+    [0, 0, 0, 1]
+
+    or
+
+    (?: ignored case because fail test by row conflict method)
+    [0, 0, 0, 1]
+    [0, 0, 1, 0]
+    [0, 1, 0, 0]
+    [1, 0, 0, 0]
+
+    // execution of loop
+    this.get(i = 0):
+
+    xp -> [1,  0,  0,  0]
+          yp
+
+    increment xp+1, yp+1
+          [1, 0, 0, 0]
+    xp -> [0, 1, 0, 0]
+              yp
+
+
+    */
+
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // grab the chess board size
+      let chessBoardSize = this.get('n');
+
+      // // declaration of counter
+      let counter = 0;
+
+      let xPointer = 0;
+      let yPointer = majorDiagonalColumnIndexAtFirstRow;
+
+      // loop through the table
+      while(xPointer < chessBoardSize && yPointer < chessBoardSize) {
+        // get the row by index
+        let row = this.get(xPointer);
+
+        // console.log(`a value at ${row} \n[${xPointer},${yPointer}] ${row[yPointer]}\n counter: ${counter}`);
+
+        if(row[yPointer]) {
+          counter++;
+        }
+
+        let newXpointer = xPointer;
+        let newYpointer = yPointer;
+
+        while(newXpointer < chessBoardSize) {
+
+          // let row = this.get(newXpointer);
+          console.log(`a value at ${row} \n[${newXpointer},${newYpointer}] ${row[yPointer]}\n counter: ${counter}`);
+          if(row[yPointer]) {
+            counter++;
+          }
+          newXpointer++;
+          newYPointer++;
+        }
+
+        xPointer++;
+        yPointer++;
+      }
+
+      console.log('return major diagonal => ' , counter > 1)
+
+      return counter > 1; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      // grab the chess board size
+      let chessBoardSize = this.get('n');
+      var board = _.toArray(this.attributes);
+      board.pop();
+      console.log('gameBoard', board)
+
+      let counter = 0;
+
+      // passing column index
+      for (let i = 0; i < chessBoardSize; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          counter++;
+        }
+      }
+
+      return counter > 1; // fixme
     },
 
 
