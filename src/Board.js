@@ -79,6 +79,7 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
+<<<<<<< HEAD
       // grab the row by rowIndex
       let row = this.get(rowIndex);
 
@@ -102,10 +103,21 @@
 
       // check to see if there is a value of 1 in the array, return a boolean
       return counter > 1; // fixme
+=======
+      var targetRow = this.attributes[rowIndex];
+        if(targetRow) {
+          //console.log('targetRow:',targetRow);
+          if (targetRow.indexOf(1) !== targetRow.lastIndexOf(1)) {
+            return true;
+          }
+          return false;
+        }
+>>>>>>> solo
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+<<<<<<< HEAD
       // grab the chess board size
       let chessBoardSize = this.get('n');
 
@@ -120,6 +132,16 @@
       }
 
       return false; // fixme
+=======
+      var size = this.attributes.n;
+      var board = this.rows();
+      for (var x = 0; x <= board.length - 1; x++) {
+        if (this.hasRowConflictAt(x)) {
+          return true;
+        }
+      }
+      return false;
+>>>>>>> solo
     },
 
 
@@ -129,6 +151,7 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+<<<<<<< HEAD
       // grab the size of the table
       let chessBoardSize = this.get('n');
 
@@ -149,10 +172,23 @@
 
       // return true if there are more than one value in the same column => column conflict
       return counter > 1; // fixme
+=======
+      // let column = this.get(colIndex);
+      let rows = this.rows();
+      let conflicts = 0;
+      for (var i = 0; i < rows.length; i++) {
+        conflicts += rows[i][colIndex];
+      }
+      if (conflicts > 1) {
+        return true;
+      }
+      return false; // fixme
+>>>>>>> solo
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+<<<<<<< HEAD
       // grab the chess board size
       let chessBoardSize = this.get('n');
 
@@ -164,6 +200,14 @@
         }
       }
 
+=======
+      var size = this.attributes.n;
+      for (var x = 0; x <= size - 1; x++) {
+        if (this.hasColConflictAt(x)) {
+          return true;
+        }
+      }
+>>>>>>> solo
       return false; // fixme
     },
 
@@ -203,6 +247,7 @@
     */
 
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+<<<<<<< HEAD
       // grab the chess board size
       let chessBoardSize = this.get('n');
 
@@ -243,11 +288,27 @@
 
       console.log('return major diagonal => ' , counter > 1)
 
+=======
+      let chessBoardSize = this.get('n');
+      let counter = 0;
+      let xPointer = 0;
+      let yPointer = majorDiagonalColumnIndexAtFirstRow;
+      while(xPointer < chessBoardSize && yPointer < chessBoardSize) {
+        let row = this.get(xPointer);
+        if(row[yPointer]) {
+          counter++;
+        }
+        xPointer++;
+        yPointer++;
+      }
+      console.log('return major diagonal => ' , counter > 1)
+>>>>>>> solo
       return counter > 1; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
+<<<<<<< HEAD
       // grab the chess board size
       let chessBoardSize = this.get('n');
       var board = _.toArray(this.attributes);
@@ -264,6 +325,16 @@
       }
 
       return counter > 1; // fixme
+=======
+      console.log('majorDiagonalTest');
+      for (var x = 0 - this.attributes.n; x <= this.attributes.n - 1; x++) {
+        console.log(x);
+        if (this.hasMajorDiagonalConflictAt(x)) {
+          return true;
+        }
+      }
+      return false; // fixme
+>>>>>>> solo
     },
 
 
