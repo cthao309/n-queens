@@ -138,14 +138,26 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      console.log('majorDiagonalColumnIndexAtFirstRow', majorDiagonalColumnIndexAtFirstRow);
-      return false; // fixme
+      let chessBoardSize = this.get('n');
+      let counter = 0;
+      let xPointer = 0;
+      let yPointer = majorDiagonalColumnIndexAtFirstRow;
+      while(xPointer < chessBoardSize && yPointer < chessBoardSize) {
+        let row = this.get(xPointer);
+        if(row[yPointer]) {
+          counter++;
+        }
+        xPointer++;
+        yPointer++;
+      }
+      console.log('return major diagonal => ' , counter > 1)
+      return counter > 1; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       console.log('majorDiagonalTest');
-      for (var x = 0; x <= this.attributes.n - 1; x++) {
+      for (var x = 0 - this.attributes.n; x <= this.attributes.n - 1; x++) {
         console.log(x);
         if (this.hasMajorDiagonalConflictAt(x)) {
           return true;
