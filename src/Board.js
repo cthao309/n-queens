@@ -234,7 +234,7 @@
             counter++;
           }
           newXpointer++;
-          newYPointer++;
+          newYpointer++;
         }
 
         xPointer++;
