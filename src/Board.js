@@ -234,7 +234,7 @@
             counter++;
           }
           newXpointer++;
-          newYPointer++;
+          newYpointer++;
         }
 
         xPointer++;
@@ -257,7 +257,7 @@
       let counter = 0;
 
       // passing column index
-      for (let i = 0; i < chessBoardSize; i++) {
+      for (let i = 1-chessBoardSize; i < chessBoardSize; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           counter++;
         }
