@@ -41,9 +41,7 @@ window.countNRooksSolutions = function(n) {
   var findSolution = function(row) {
     if (row === n) {
       solutionCount++;
-      //if (!solution.hasAnyRooksConflicts()) {
-        return solution;
-      //}
+      return solution;
     }
     for (var x = 0; x <= n - 1; x++) {
       solution.togglePiece(row,x);
@@ -94,9 +92,7 @@ window.countNQueensSolutions = function(n) {
   var findSolution = function(row) {
     if (row === n) {
       solutionCount++;
-      //if (!solution.hasAnyRooksConflicts()) {
-        return solution;
-      //}
+      return solution;
     }
     for (var x = 0; x <= n - 1; x++) {
       solution.togglePiece(row,x);
